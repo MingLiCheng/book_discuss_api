@@ -9,7 +9,7 @@ module.exports = async (ctx, next) => {
   } = ctx.request.query
 
   console.log('page',page)
-  const size = 2
+  const size = 10
 
   const selectRes = mysql('comments').select('comments.*', 'cSessionInfo.user_info')
                                         .join('cSessionInfo', 'comments.openid', 'cSessionInfo.open_id')

@@ -9,7 +9,7 @@ module.exports = async (ctx, next) => {
   } = ctx.request.query
 
   //查询当前评论的主要内容
-  const selectSql1 = await mysql('commentitem').select('commentitem.*', 'comments.bookid', 'cSessionInfo.user_info')
+  const selectSql1 = await mysql('commentitem').select('commentitem.*', 'comments.bookid', 'comments.title', 'cSessionInfo.user_info')
   .join('comments', 'commentitem.comment_id', 'comments.id')
     .join('cSessionInfo', 'commentitem.openid', 'cSessionInfo.open_id')
       .where('commentitem.comment_id', commentId).limit(1)
@@ -22,7 +22,7 @@ module.exports = async (ctx, next) => {
 
   ctx.state.data = {
     msg: 'SUCCESS',
-    info: selectSql1,
+    info: b,
   }
 }
 

@@ -46,17 +46,35 @@ router.post('/addbook', controllers.addbook)
 router.get('/booklist', controllers.booklist)
 router.get('/bookdetail', controllers.bookdetail)
 router.get('/top', controllers.top)
+router.get('/bookmap', controllers.book.bookidmap)
 
 router.post('/userinfo', controllers.users.userinfo)
-router.get('/addresslist', controllers.users.addresslist)
+router.post('/user/edituserinfo', controllers.users.editinfo)
+// 地址管理
+router.get('/addresslist', controllers.users.address.addresslist)
+router.post('/addads', controllers.users.address.addads)
+router.post('/updateads', controllers.users.address.updateads)
 
+// 评论信息模块
 router.post('/addcomment', controllers.comment.addcomment)
 router.get('/commentlist', controllers.comment.commentlist)
 router.get('/commentdetail', controllers.comment.detail)
 router.post('/addchildcomment', controllers.comment.addchildcomment)
 
-router.get('/goodslist', controllers.shop.goodslist)
-router.get('/gooddetail', controllers.shop.detail)
+// 商城
+router.get('/shop/goodslist', controllers.shop.goodslist)
+router.get('/shop/gooddetail', controllers.shop.detail)
+// 购物车
+router.get('/cart/list', controllers.shop.cart.list)
+// 添加商品
+router.post('/cart/addgood', controllers.shop.cart.addgood)
+// 修改购物车
+router.post('/cart/update', controllers.shop.cart.updategood)
+
+
+
+
+
 console.log('contor', controllers)
 
 module.exports = router
