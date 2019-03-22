@@ -41,15 +41,21 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 
-//
-router.post('/addbook', controllers.addbook)
-router.get('/booklist', controllers.booklist)
-router.get('/bookdetail', controllers.bookdetail)
-router.get('/top', controllers.top)
+//book
+router.post('/addbook', controllers.book.addbook)
+router.get('/booklist', controllers.book.booklist)
+router.get('/bookdetail', controllers.book.bookdetail)
+router.get('/top', controllers.book.top)
 router.get('/bookmap', controllers.book.bookidmap)
+router.get('/getBooklistByKeyword', controllers.book.search.getBooklistByKeyword)
+
 
 router.post('/userinfo', controllers.users.userinfo)
 router.post('/user/edituserinfo', controllers.users.editinfo)
+
+router.get('/user/userlist', controllers.admin.user.userlist)
+
+
 // 地址管理
 router.get('/addresslist', controllers.users.address.addresslist)
 router.post('/addads', controllers.users.address.addads)
@@ -71,6 +77,8 @@ router.post('/cart/addgood', controllers.shop.cart.addgood)
 // 修改购物车
 router.post('/cart/update', controllers.shop.cart.updategood)
 
+
+// 用户信息
 
 
 

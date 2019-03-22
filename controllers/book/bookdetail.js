@@ -1,4 +1,4 @@
-const {mysql} = require('../qcloud')
+const {mysql} = require('../../qcloud')
 
 module.exports = async (ctx) => {
     const {id} = ctx.request.query

@@ -1,5 +1,5 @@
 const https = require('https')
-const {mysql} = require('../qcloud')
+const {mysql} = require('../../qcloud')
 // 新增图书
 // 1. 获取豆瓣信息
 // https://developers.douban.com/wiki/?title=book_v2#get_isbn_book
