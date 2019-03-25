@@ -33,5 +33,6 @@ router.post('/addchildcomment', controllers.comment.addchildcomment)
 
 // 用户信息
 router.get('/user/userlist', controllers.admin.user.userlist)
+router.post('/user/userinfo', controllers.users.userinfo)
 
 module.exports = router
