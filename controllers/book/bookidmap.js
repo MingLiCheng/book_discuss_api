@@ -8,12 +8,13 @@ module.exports = async (ctx, next) => {
   } = ctx.request.query
   console.log('bookname', bookname)
   if (bookname) {
-    const maplist = await mysql('books').select('books.id', 'books.title').where('books.title', 'like', `%${bookname}%`)
+    const maplist = await mysql('books').select('books.id', 'books.title', 'books.price').where('books.title', 'like', `%${bookname}%`)
     ctx.state.data = {
       list: maplist.map(v => {
         return {
           value: v.id,
-          title: v.title
+          title: v.title,
+          price: v.price
         }
       })
     }
@@ -23,7 +24,7 @@ module.exports = async (ctx, next) => {
       list: maplist.map(v => {
         return {
           value: v.id,
-          title: v.title
+          title: v.title,
         }
       })
     }

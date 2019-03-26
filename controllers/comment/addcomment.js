@@ -29,16 +29,16 @@ module.exports = async (ctx, next) => {
       location
     })
     const b = await mysql('commentitem').insert({
-      comment_id:a,
+      comment_id: a,
       content,
-      depth:'1',
-      thread:'/1/'
+      depth: '1',
+      thread: '/1/'
     })
 
     console.log('a', a)
     ctx.state.data = {
       message: 'success',
-      id: a+','+b
+      id: a + ',' + b
     }
   } catch (error) {
     ctx.state = {
