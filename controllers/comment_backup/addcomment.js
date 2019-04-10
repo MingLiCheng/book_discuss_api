@@ -4,25 +4,34 @@ const {
 
 module.exports = async (ctx, next) => {
   const {
-    issueId,
     openId,
-    content,
-    farther_id
+    bookid,
+    title,
+    content
   } = ctx.request.body
   console.log('xx', ctx.request.body);
+
   try {
     const a = await mysql('comments').insert({
       openid: openId,
-      issue_id: issueId,
+      bookid,
+      content_id: '测试',
+      title,
+      summary: content.substring(0, 50),
+    })
+    const b = await mysql('commentitem').insert({
+      comment_id: a,
       content,
-      farther_id
+      depth: '1',
+      thread: '/1/'
     })
     ctx.state.data = {
-        data: a[0],
-        message: 'SUCCESS'
+      message: 'success',
+      id: a + ',' + b
     }
   } catch (error) {
     console.log(error);
+
     ctx.state = {
       code: -1,
       data: {

@@ -2,7 +2,7 @@
 const { mysql } = require('../../qcloud')
 
 module.exports = async (ctx) => {
-    const {page, openid, size=5 } = ctx.request.query
+    const {page, openid, size=5, type } = ctx.request.query
     console.log('xxx', ctx.request.query)
     // const size = 8
     const mysqlSelect = mysql('books')
@@ -16,8 +16,14 @@ module.exports = async (ctx) => {
         // 根据opid过滤
         books = await mysqlSelect.where('books.openid', openid).limit(size).offset(Number(page) * Number(size))
     }else{
-        // 全部图书 分页
-        books = await mysqlSelect.limit(size).offset(Number(page) * size)
+        if(type){
+            books = await mysqlSelect.limit(size).offset(Number(page) * size).where('books.category',
+                type)
+        }else{
+            // 全部图书 分页
+            books = await mysqlSelect.limit(size).offset(Number(page) * size)
+        }
+
     }
     // .orderBy('id','desc')
     ctx.state.data = {

@@ -48,6 +48,7 @@ router.get('/bookdetail', controllers.book.bookdetail)
 router.get('/top', controllers.book.top)
 router.get('/bookmap', controllers.book.bookidmap)
 router.get('/getBooklistByKeyword', controllers.book.search.getBooklistByKeyword)
+router.get('/book/getBooklistByType', controllers.book.booklistbytype)
 
 
 router.post('/userinfo', controllers.users.userinfo)
@@ -61,11 +62,17 @@ router.get('/addresslist', controllers.users.address.addresslist)
 router.post('/addads', controllers.users.address.addads)
 router.post('/updateads', controllers.users.address.updateads)
 
+// issue模块
+router.post('/issue/add', controllers.issue.add)
+router.get('/issue/list', controllers.issue.list)
+router.get('/issue/detail', controllers.issue.detail)
 // 评论信息模块
-router.post('/addcomment', controllers.comment.addcomment)
-router.get('/commentlist', controllers.comment.commentlist)
-router.get('/commentdetail', controllers.comment.detail)
-router.post('/addchildcomment', controllers.comment.addchildcomment)
+router.post('/comment/add', controllers.comment.addcomment)
+router.get('/comment/list', controllers.comment.commentlist)
+router.get('/comment/childlist', controllers.comment.childcommentlist)
+router.get('/comment/delById', controllers.comment.delcomment)
+router.get('/comment/commentdetail', controllers.comment.detail)
+router.post('/comment/addchildcomment', controllers.comment.addchildcomment)
 
 // 商城
 router.get('/shop/goodslist', controllers.shop.goodslist)
@@ -80,6 +87,8 @@ router.post('/cart/update', controllers.shop.cart.updategood)
 
 // 用户信息
 
+// 广告信息
+router.get('/adv/listByTypeId', controllers.adv.booklist)
 
 
 

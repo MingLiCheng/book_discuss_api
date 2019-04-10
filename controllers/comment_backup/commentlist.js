@@ -5,25 +5,22 @@ module.exports = async (ctx, next) => {
 
   const {
     page,
-    openid,
-    issue_id
+    openid
   } = ctx.request.query
 
   console.log('page',page)
   const size = 10
 
-  const selectRes = mysql('comments').select('comments.*', 'cSessionInfo.user_info')
+  const selectRes = mysql('comments').select('comments.*', 'cSessionInfo.user_info', 'books.title as booktitle')
                                         .join('cSessionInfo', 'comments.openid', 'cSessionInfo.open_id')
+                                          .join('books', 'comments.bookid', 'books.id')
                                             .orderBy('comments.id', 'desc')
 
   let comments
   if (openid) {
     // 根据opid过滤
     comments = await selectRes.where('books.openid', openid).limit(size).offset(Number(page) * size)
-  }else if(issue_id) {
-    comments = await selectRes.where('comments.issue_id', issue_id).limit(size).offset(Number(page) * size)
-    // childComments = await selectRes.where('comments.farther_id', issue_id).limit(2).offset(Number(page) * 2)
-  }else {
+  } else {
     // 全部
     comments = await selectRes.limit(size).offset(Number(page) * size)
   }

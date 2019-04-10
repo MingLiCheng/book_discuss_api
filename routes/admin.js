@@ -39,10 +39,17 @@ router.post('/user/userinfo', controllers.users.userinfo)
 // 商城
 router.get('/shop/goodslist', controllers.shop.goodslist)
 router.get('/shop/gooddetail', controllers.shop.detail)
+// 添加商品
+router.post('/shop/addgood', controllers.shop.editshop.addgood)
+router.post('/shop/editgood', controllers.shop.editshop.editgood)
 // 购物车
 router.get('/cart/list', controllers.shop.cart.list)
 // 添加商品
 router.post('/cart/addgood', controllers.shop.cart.addgood)
 // 修改购物车
 router.post('/cart/update', controllers.shop.cart.updategood)
+
+// 广告信息
+router.get('/adv/listByTypeId', controllers.adv.booklist)
+
 module.exports = router

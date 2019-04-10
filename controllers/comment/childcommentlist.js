@@ -6,28 +6,23 @@ module.exports = async (ctx, next) => {
   const {
     page,
     openid,
-    issue_id
+    farther_id
   } = ctx.request.query
 
-  console.log('page',page)
-  const size = 10
+  console.log('page', page)
+  const size = 2
 
   const selectRes = mysql('comments').select('comments.*', 'cSessionInfo.user_info')
-                                        .join('cSessionInfo', 'comments.openid', 'cSessionInfo.open_id')
-                                            .orderBy('comments.id', 'desc')
+    .join('cSessionInfo', 'comments.openid', 'cSessionInfo.open_id')
+    .orderBy('comments.id', 'desc')
 
   let comments
   if (openid) {
     // 根据opid过滤
     comments = await selectRes.where('books.openid', openid).limit(size).offset(Number(page) * size)
-  }else if(issue_id) {
-    comments = await selectRes.where('comments.issue_id', issue_id).limit(size).offset(Number(page) * size)
-    // childComments = await selectRes.where('comments.farther_id', issue_id).limit(2).offset(Number(page) * 2)
-  }else {
-    // 全部
-    comments = await selectRes.limit(size).offset(Number(page) * size)
+  } else {
+    comments = await selectRes.where('comments.farther_id', farther_id).limit(size).offset(Number(page) * size)
   }
-
   ctx.state.data = {
     list: comments.map(v => {
       const info = JSON.parse(v.user_info)
@@ -38,9 +33,6 @@ module.exports = async (ctx, next) => {
         }
       })
     }),
-    message:'SUCCESS'
+    message: 'SUCCESS'
   }
-
-
-
 }
