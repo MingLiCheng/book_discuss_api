@@ -59,6 +59,7 @@ router.get('/user/userlist', controllers.admin.user.userlist)
 
 // 地址管理
 router.get('/addresslist', controllers.users.address.addresslist)
+router.get('/address/get', controllers.users.address.getAddress)
 router.post('/addads', controllers.users.address.addads)
 router.post('/updateads', controllers.users.address.updateads)
 
@@ -66,6 +67,7 @@ router.post('/updateads', controllers.users.address.updateads)
 router.post('/issue/add', controllers.issue.add)
 router.get('/issue/list', controllers.issue.list)
 router.get('/issue/detail', controllers.issue.detail)
+router.get('/issue/collect', controllers.issue.collect)
 // 评论信息模块
 router.post('/comment/add', controllers.comment.addcomment)
 router.get('/comment/list', controllers.comment.commentlist)
@@ -84,7 +86,11 @@ router.post('/cart/addgood', controllers.shop.cart.addgood)
 // 修改购物车
 router.post('/cart/update', controllers.shop.cart.updategood)
 
-
+// order
+router.post('/order/create', controllers.order.create)
+// collect
+router.post('/collect/set', controllers.collect.setstatus)
+router.get('/collect/list', controllers.collect.list)
 // 用户信息
 
 // 广告信息
