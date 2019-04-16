@@ -16,8 +16,10 @@ module.exports = async (ctx, next) => {
     })
 
     let count = 0
+    let goods_count = 0
     await goods.map(async v => {
       count = count + v.goodnum * v.goodprice
+      goods_count = goods_count + v.goodnum
       await mysql('orderitem').insert({
         order_id: order,
         order_number,
@@ -28,10 +30,11 @@ module.exports = async (ctx, next) => {
       })
     })
     await mysql('orderinfo').update({
-      order_amount: count
+      order_amount: count,
+      goods_count,
     }).where('order_id', order)
     // 删除购物车中的内容
-    // await mysql('cart').del().where('open_id', openid)
+    await mysql('cart').del().where('open_id', openid)
     ctx.state.data = {
       message:'SUCCESS',
       count,

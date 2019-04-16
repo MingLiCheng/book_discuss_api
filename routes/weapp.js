@@ -61,7 +61,7 @@ router.get('/user/userlist', controllers.admin.user.userlist)
 router.get('/addresslist', controllers.users.address.addresslist)
 router.get('/address/get', controllers.users.address.getAddress)
 router.post('/addads', controllers.users.address.addads)
-router.post('/updateads', controllers.users.address.updateads)
+router.post('/address/del', controllers.users.address.delAddress)
 
 // issue模块
 router.post('/issue/add', controllers.issue.add)
@@ -88,6 +88,7 @@ router.post('/cart/update', controllers.shop.cart.updategood)
 
 // order
 router.post('/order/create', controllers.order.create)
+router.post('/order/list', controllers.order.list)
 // collect
 router.post('/collect/set', controllers.collect.setstatus)
 router.get('/collect/list', controllers.collect.list)
