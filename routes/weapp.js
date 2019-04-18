@@ -97,6 +97,17 @@ router.get('/collect/list', controllers.collect.list)
 // 广告信息
 router.get('/adv/listByTypeId', controllers.adv.booklist)
 
+/**
+ * 搜索相关接口
+ */
+//1.关键词和搜索历史接口
+router.get('/search/indexaction', controllers.search.index.indexAction)
+//2.搜索提示接口
+router.get('/search/helperaction', controllers.search.index.helperAction)
+//3.搜索的关键词添加到数据库
+router.post('/search/addhistoryaction', controllers.search.index.addHistoryAction)
+//4.清空搜索历史
+router.post('/search/clearhistoryAction', controllers.search.index.clearhistoryAction)
 
 
 console.log('contor', controllers)
