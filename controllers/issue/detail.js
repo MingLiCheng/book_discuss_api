@@ -4,7 +4,7 @@ module.exports = async (ctx, next) => {
   const { issueId, openid } = ctx.request.query
 
   const issueDetail = await mysql('issues')
-    .select('issues.*', 'books.image', 'books.title as bookName', 'books.author')
+    .select('issues.*', 'books.image', 'books.title as bookName', 'books.author', 'books.isbn')
     .join('books', 'books.id', 'issues.bookid').where('issues.id', issueId)
 
   if (openid) {

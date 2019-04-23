@@ -8,17 +8,17 @@ module.exports = async (ctx, next) => {
   try {
     let res
     if (openid) {
-      if (trade_status) {
+      if (trade_status >= 0) {
         res = await orderlist.where('orderinfo.open_id', openid).where('orderinfo.trade_status', trade_status)
         console.log('xxx', trade_status);  
       }else {
         res = await orderlist.where('orderinfo.open_id', openid)
       }
     } else {
-      if (trade_status){
+      if (trade_status >= 0){
         res = await orderlist.where('orderinfo.trade_status', trade_status).limit(size).offset(Number(page) * size)
       }else {
-        res = await orderlist.limit(size).offset(Number(page) * size)
+        res = await orderlist // .limit(size).offset(Number(page) * size)
       }
     }
     const list = await Promise.all(

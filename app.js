@@ -28,7 +28,7 @@ app.use((ctx, next) => {
 app.use(koaJwt({
   secret:'jwtSecret'
 }).unless({
-  path: [/^\/weapp\//, /^\/admin\/user\//, /^\/admin\/test/, /^\/admin\/usercheck/]
+  path: [/^\/weapp\//, /^\/admin\/user\/login/, /^\/admin\/test/, /^\/admin\/usercheck/]
 }))
 
 // 引入路由分发

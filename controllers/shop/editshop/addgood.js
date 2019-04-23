@@ -5,12 +5,14 @@ module.exports = async (ctx, next) => {
 
   const {
     price,
-    book_id
+    book_id,
+    number
   } = ctx.request.body
     try {
       const goodId = await mysql('goods').insert({
         book_id,
-        price
+        price,
+        number
       })
       console.log(goodId);
 
@@ -22,8 +24,5 @@ module.exports = async (ctx, next) => {
           message: 'fild'
         }
     }
-
-
-
 
 }

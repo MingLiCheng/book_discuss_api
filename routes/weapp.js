@@ -86,9 +86,21 @@ router.post('/cart/addgood', controllers.shop.cart.addgood)
 // 修改购物车
 router.post('/cart/update', controllers.shop.cart.updategood)
 
-// order
+/* 
+    订单模块接口
+*/
+// 根据购物车生成订单（所有） 
 router.post('/order/create', controllers.order.create)
+// 根据商品id生成订单（一个商品直接购买）
+router.post('/order/createByGoodsId', controllers.order.createByGoodsId)
 router.post('/order/list', controllers.order.list)
+// 修改订单状态
+router.post('/order/editStatus', controllers.order.editStatus)
+// info
+router.post('/order/info/orderTotal', controllers.order.info.orderTotal)
+
+
+
 // collect
 router.post('/collect/set', controllers.collect.setstatus)
 router.get('/collect/list', controllers.collect.list)
@@ -96,6 +108,8 @@ router.get('/collect/list', controllers.collect.list)
 
 // 广告信息
 router.get('/adv/listByTypeId', controllers.adv.booklist)
+// 智能推荐
+router.post('/rec/list', controllers.cfr.getrecommend)
 
 /**
  * 搜索相关接口

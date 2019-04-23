@@ -26,6 +26,17 @@ module.exports = async (ctx) => {
 
     }
     // .orderBy('id','desc')
+
+    // 查询是否有推荐信息
+    let recommends = []
+    if(openid) {
+        recommends = await mysql('recommend')
+            .select('recommend.bookid','recommend.id as recommendId', 'recommend.rec_rate', 'books.*')
+            .join('books', 'recommend.bookid', 'books.id')
+            .where('recommend.openid', openid).orderBy('recommend.rec_rate', 'desc')
+            .limit(1).offset(Number(page) * 1)
+    }
+
     ctx.state.data = {
         list: books.map(v => {
             const info = JSON.parse(v.user_info)
@@ -35,6 +46,7 @@ module.exports = async (ctx) => {
                 }
             })
         }),
+        recommends,
         total: total[0].total
     }
 }
