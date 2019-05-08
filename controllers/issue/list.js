@@ -9,7 +9,7 @@ module.exports = async (ctx, next) => {
     .orderBy('issues.id', 'desc')
   let issues
   if (openid) {
-    issues = await listSql.where('openid', openid).limit(size).offset(Number(page) * Number(size))
+    issues = await listSql.where('issues.openid', openid).limit(size).offset(Number(page) * Number(size))
   }else if(bookid){
     issues = await listSql.where('issues.bookid', bookid).limit(size).offset(Number(page) * Number(size))
   } else {

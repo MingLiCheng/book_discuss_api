@@ -43,6 +43,7 @@ module.exports = async (ctx, next) => {
     ctx.state.data = {
       message: 'SUCCESS',
       count,
+      order
     }
   } catch (error) {
     ctx.state.data = {
