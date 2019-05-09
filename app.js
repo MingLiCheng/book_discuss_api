@@ -38,5 +38,5 @@ app.use(router.routes())
 const adminRouter = require('./routes/admin')
 app.use(adminRouter.routes())
 
-// 启动程序，监听端口
+// 启动程序，监听端口 5757
 app.listen(config.port, () => debug(`listening on port ${config.port}`))
