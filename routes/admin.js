@@ -18,6 +18,8 @@ router.get('/test', (ctx, next) => {
 router.post('/user/login', controllers.admin.user.login)
 router.get('/user/checkusername', controllers.admin.user.usercheck)
 
+router.post('/user/edit', controllers.admin.user.edit)
+
 // Token: yes
 // 获取管理员列表
 router.get('/admin/list', controllers.admin.user.userlist)
@@ -54,8 +56,8 @@ router.post('/comment/addchildcomment', controllers.comment.addchildcomment)
 router.get('/user/userlist', controllers.admin.userlist)
 router.post('/user/userinfo', controllers.users.userinfo)
 
-/* 
- 商城模块 
+/*
+ 商城模块
  */
 router.get('/shop/goodslist', controllers.shop.goodslist)
 router.get('/shop/gooddetail', controllers.shop.detail)
@@ -72,7 +74,7 @@ router.post('/cart/update', controllers.shop.cart.updategood)
 
 // 订单信息
 // 订单的数量信息
-router.get('/order/info/orderTotal', controllers.order.info.orderTotal) 
+router.get('/order/info/orderTotal', controllers.order.info.orderTotal)
 
 /*
   order订单接口
@@ -84,8 +86,10 @@ router.post('/order/editStatus', controllers.order.editStatus)
 
 // 广告信息
 router.get('/adv/listByTypeId', controllers.adv.booklist)
+router.post('/adv/addByBookId', controllers.adv.addByBookId)
+router.post('/adv/delByBookId', controllers.adv.delByBookId)
 
-/* 
+/*
   智能推荐算法的推荐结果
  */
 // 根据openid获取该用户的推荐结果

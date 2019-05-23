@@ -21,7 +21,7 @@ module.exports = async (ctx, next) => {
       data: {
         token: `Bearer ${token}`,
         message: 'SUCCESS',
-        username: userInfo.username
+        userInfo: userInfo
       },
     }
   } else if (userInfo && !userInfo.authority) {

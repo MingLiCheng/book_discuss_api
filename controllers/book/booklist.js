@@ -3,6 +3,9 @@ const { mysql } = require('../../qcloud')
 
 module.exports = async (ctx) => {
     const { page, openid, size = 5, type } = ctx.request.query
+    if(openid == 'undefined') {
+        openid = false
+    }
     console.log('xxx', ctx.request.query)
     // const size = 8
     const mysqlSelect = mysql('books')
@@ -12,7 +15,8 @@ module.exports = async (ctx) => {
     const total = await mysql('books').count('id as total')
     console.log('total', total, 'openid', openid )
     let books
-    if (openid != 'undefined') {
+    // != 'undefined'
+    if (openid) {
         // 根据opid过滤
         books = await mysqlSelect.where('books.openid', openid).limit(size).offset(Number(page) * Number(size))
     } else {

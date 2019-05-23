@@ -8,10 +8,10 @@ async function indexAction(ctx) {
     is_default: 1
   }).limit(1).select();
   // 取出热闹关键词
-  const hotKeywordList = 
+  const hotKeywordList =
   await mysql('search_keywords').distinct('keyword').column('keyword', 'is_hot').limit(10).select();
 
-  const historyData 
+  const historyData
   = await mysql('search_history').where({
     "openid": openId
   }).limit(10).select();
@@ -102,7 +102,6 @@ async function clearhistoryAction(ctx) {
       "data": null
     }
   }
-
 }
 
 module.exports = {
