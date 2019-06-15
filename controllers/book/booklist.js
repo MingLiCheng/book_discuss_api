@@ -3,8 +3,8 @@ const { mysql } = require('../../qcloud')
 
 module.exports = async (ctx) => {
     let { page, openid, size = 5, type } = ctx.request.query
-    if (openid == 'undefined') {
-        openid = false
+    if (type == 'undefined' || type == 'tab1') {
+        type = false
     }
     const mysqlSelect = mysql('books')
         .select('books.*')

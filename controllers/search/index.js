@@ -25,6 +25,7 @@ async function indexAction(ctx) {
 //搜索的时候匹配搜索相关的
 async function helperAction(ctx) {
   const keyword = ctx.query.keyword;
+  console.log('keword', keyword)
   const keywords = await mysql('books')
     .select('books.*')
     .where('title', 'like', `%${keyword}%`).orWhere('isbn', 'like', `%${keyword}%`)
