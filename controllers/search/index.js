@@ -25,21 +25,14 @@ async function indexAction(ctx) {
 //搜索的时候匹配搜索相关的
 async function helperAction(ctx) {
   const keyword = ctx.query.keyword;
+  console.log('keword', keyword)
   const keywords = await mysql('books')
-    .select('books.*', 'cSessionInfo.user_info')
-    .join('cSessionInfo', 'books.openid', 'cSessionInfo.open_id')
+    .select('books.*')
     .where('title', 'like', `%${keyword}%`).orWhere('isbn', 'like', `%${keyword}%`)
     .orderBy('books.id', 'desc')
   if (keyword) {
     ctx.state.data = {
-      keywords: keywords.map(v => {
-        const info = JSON.parse(v.user_info)
-        return Object.assign({}, v, {
-          user_info: {
-            nickName: info.nickName
-          }
-        })
-      })
+      keywords: keywords
     }
   } else {
     ctx.state.data = {
